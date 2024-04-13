@@ -1,0 +1,13 @@
+public class Solution {
+    public int solve(int A, int B, int[] C) {
+        Stack < Integer > st = new Stack < Integer > ();
+        st.push(B);
+        for (int x: C) {
+            // pop from stack
+            if (x == 0) st.pop();
+            // push the given ID to stack
+            else st.push(x);
+        }
+        return st.peek();
+    }
+}
