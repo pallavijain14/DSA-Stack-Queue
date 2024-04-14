@@ -1,0 +1,29 @@
+public class Solution {
+    
+    boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
+    }
+    
+    public int braces(String A) {
+        char s[] = A.toCharArray();
+        int n = s.length;
+        Stack <Character> st = new Stack<>();
+        for(char c : s) {
+            if(c == '(') {
+                st.push(c);
+            } else if(c == ')') {
+                // finds the no of characters between adjacent '(' and ')' pair
+                char top = st.peek();
+                if( !isOperator(top) )    return 1;
+                while ( isOperator(st.peek()) )   st.pop();
+                if(st.peek() != '(')    return 1;
+                st.pop();
+            } else if(isOperator(c)) {
+                st.push(c);
+            }
+        }
+        while ( !st.isEmpty() && isOperator(st.peek()) )   
+            st.pop();
+        return st.isEmpty() ? 0 : 1;
+    }
+}
