@@ -1,0 +1,22 @@
+public class Solution {
+    public int[] nextGreater(int[] A) {
+        Stack < Integer > s = new Stack < > ();
+        s.push(0);
+        int n = A.length;
+        int[] ans = new int[n];
+        Arrays.fill(ans, -1);
+        for (int i = 1; i < n; i++) {
+            if (s.isEmpty()) {
+                s.push(i);
+                continue;
+            }
+            // find the elements whose next greater element is A[i]
+            while (!s.isEmpty() && A[s.peek()] < A[i]) {
+                ans[s.peek()] = A[i];
+                s.pop();
+            }
+            s.push(i);
+        }
+        return ans;
+    }
+}
