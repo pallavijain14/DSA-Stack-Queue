@@ -1,0 +1,22 @@
+public class Solution {
+    public ArrayList < Integer > solve(int A) {
+        Queue < Integer > q = new LinkedList < Integer > ();
+        ArrayList < Integer > ans = new ArrayList < > ();
+        q.add(1);
+        q.add(2);
+        q.add(3);
+        int cnt = 3;
+        while (ans.size() < A) {
+            int x = q.peek();
+            ans.add(x);
+            q.remove();
+            if(cnt >= A)continue;
+            // append 1, 2 and 3 to the current number
+            q.add(10 * x + 1);
+            q.add(10 * x + 2);
+            q.add(10 * x + 3);
+            cnt += 3;
+        }
+        return ans;
+    }
+}
