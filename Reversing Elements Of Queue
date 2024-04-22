@@ -1,0 +1,16 @@
+public class Solution {
+    public int[] solve(int[] A, int B) {
+        Deque < Integer > q = new ArrayDeque < Integer > (A.length);
+        int i = 0;
+        // Insert first B elements in queue
+        for (i = 0; i < B; i++)
+            q.addLast(A[i]);
+        // Reverse the first B elements in the array A
+        while (q.size() > 0) {
+            i--;
+            A[i] = q.getFirst();
+            q.removeFirst();
+        }
+        return A;
+    }
+}
