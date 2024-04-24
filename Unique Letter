@@ -1,0 +1,26 @@
+public class Solution {
+    public String solve(String A) {
+        Queue < Character > q = new LinkedList < Character > ();
+        // mp stores the frequency of each character
+        HashMap < Character, Integer > mp = new HashMap < Character, Integer > ();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < A.length(); i++) {
+            Character c = A.charAt(i);
+            if (mp.get(c) != null) {
+                mp.put(c, 2);
+            } else {
+                q.add(c);
+                mp.put(c, 1);
+            }
+            // remove from queue if the character repeats
+            while (q.size() > 0 && mp.get(q.peek()) > 1) {
+                q.remove();
+            }
+            if (q.size() > 0)
+                sb.append(q.peek());
+            else
+                sb.append('#');
+        }
+        return sb.toString();
+    }
+}
